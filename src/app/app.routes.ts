@@ -25,10 +25,9 @@ export const routes: Routes = [
         children:[
             {
                 path:'listaAlumnos',
-                loadComponent:()=>
-                    import('./escuela/lista-alumnos/lista-alumnos').then(
-                        (d)=>d.ListaAlumnos
-                    ),
+                loadComponent: () =>
+                import('./escuela/lista-alumnos/lista-alumnos')
+                    .then((d) => d.ListaAlumnos),
             },
         ]
     },

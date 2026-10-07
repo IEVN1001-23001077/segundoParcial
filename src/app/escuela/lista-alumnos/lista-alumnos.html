@@ -1,16 +1,120 @@
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
 
-<h2 class="mb-2 text-lg font-medium text-heading">Password requirements:</h2>
-<ul class="max-w-md space-y-1 text-body list-inside">
-    <li class="flex items-center">
-         <svg class="w-4 h-4 text-fg-success me-1.5 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-        At least 10 characters
-    </li>
-    <li class="flex items-center">
-         <svg class="w-4 h-4 text-fg-success me-1.5 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-        At least one lowercase character
-    </li>
-    <li class="flex items-center">
-         <svg class="w-4 h-4 text-body me-1.5 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-        At least one special character, e.g., ! @ # ?
-    </li>
-</ul>
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">
+    Lista Alumnos
+  </h1>
+
+  <form [formGroup]="formulario">
+
+    <!-- MATRICULA -->
+    <div class="mb-5">
+      <label
+        for="matricula"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Matricula
+      </label>
+
+      <input
+        type="text"
+        id="matricula"
+        name="matricula"
+        formControlName="matricula"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="matricula"
+      >
+    </div>
+
+    <!-- NOMBRE -->
+    <div class="mb-5">
+      <label
+        for="nombre"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Nombre
+      </label>
+
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        formControlName="nombre"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="nombre"
+      >
+    </div>
+
+    <!-- CORREO -->
+    <div class="mb-5">
+      <label
+        for="correo"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Correo
+      </label>
+
+      <input
+        type="text"
+        id="correo"
+        name="correo"
+        formControlName="correo"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="correo"
+      >
+    </div>
+
+    <!-- MATERIA -->
+    <div class="mb-5">
+      <label
+        for="materia"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Materia
+      </label>
+
+      <input
+        type="text"
+        id="materia"
+        name="materia"
+        formControlName="materia"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="materia"
+      >
+    </div>
+
+    <!-- BOTÓN -->
+    <div class="flex justify-end mt-5">
+      <button
+        type="submit"
+        (click)="muestraAlumnos()"
+        class="text-white bg-blue-700 hover:bg-blue-800
+               focus:ring-4 focus:outline-none focus:ring-blue-300
+               font-medium rounded-lg text-sm px-5 py-2.5"
+      >
+        Agregar
+      </button>
+    </div>
+
+  </form>
+  <div class="max-w-6xl mx-auto mt-8">
+
+    <h2 class="mb-4 text-2xl font-bold text-gray-900">
+        Lista de Alumnos
+    </h2>
+    <h3>Matricula{{alumno.matricula}}</h3>
+    <h3>Nombre{{alumno.nombre}}</h3>
+    <h3>Correo{{alumno.correo}}</h3>
+    <h3>Materia{{alumno.materia}}</h3>
+
+
+  </div>
+
+</div>
