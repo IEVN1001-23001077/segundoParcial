@@ -18,6 +18,12 @@ export const routes: Routes = [
                         (b)=>b.Zoodiaco
                     ),
             },
+            {
+                path: 'zodiac-form',
+                loadComponent: () =>
+                    import('./formularios/zodiac-form/zodiac-form')
+                    .then((c) => c.ZodiacForm),
+                },
         ]
     },
     {

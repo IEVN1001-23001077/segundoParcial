@@ -1,0 +1,14 @@
+
+:host {
+  display: block;
+  min-height: 100%;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+input {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}

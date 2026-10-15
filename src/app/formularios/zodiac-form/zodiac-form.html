@@ -1,0 +1,220 @@
+
+<div class="min-h-screen bg-gray-50 px-4 py-10">
+
+  <div class="mx-auto max-w-6xl">
+
+    <h1 class="mb-8 text-center text-3xl font-bold text-gray-900">
+      Zodiaco chino
+    </h1>
+
+    <!-- FORMULARIO -->
+    <section class="mb-8 rounded-2xl border bg-white p-6 shadow-sm">
+
+      <h2 class="mb-6 text-2xl font-bold text-gray-900">
+        Datos personales
+      </h2>
+
+      <form [formGroup]="formulario" (ngSubmit)="imprimir()">
+
+        <div class="mb-5">
+          <label for="nombre" class="mb-2 block text-sm font-medium">
+            Nombre
+          </label>
+          <input id="nombre" type="text" formControlName="nombre"
+            placeholder="Tu nombre"
+            class="block w-full rounded-lg border p-2.5">
+        </div>
+
+        <div class="mb-5">
+          <label for="apP" class="mb-2 block text-sm font-medium">
+            Apellido paterno
+          </label>
+          <input id="apP" type="text" formControlName="apP"
+            placeholder="Tu apellido paterno"
+            class="block w-full rounded-lg border p-2.5">
+        </div>
+
+        <div class="mb-5">
+          <label for="apM" class="mb-2 block text-sm font-medium">
+            Apellido materno
+          </label>
+          <input id="apM" type="text" formControlName="apM"
+            placeholder="Tu apellido materno"
+            class="block w-full rounded-lg border p-2.5">
+        </div>
+
+        <!-- FECHA DE NACIMIENTO -->
+        <fieldset class="mb-5">
+          <legend class="mb-3 text-sm font-medium">
+            Fecha de nacimiento
+          </legend>
+
+          <div class="grid grid-cols-3 gap-3">
+
+            <div>
+              <label for="dia" class="mb-2 block text-sm">Día</label>
+              <input id="dia" type="number" formControlName="dia"
+                min="1" max="31" placeholder="DD"
+                class="block w-full rounded-lg border p-2.5">
+            </div>
+
+            <div>
+              <label for="mes" class="mb-2 block text-sm">Mes</label>
+              <input id="mes" type="number" formControlName="mes"
+                min="1" max="12" placeholder="MM"
+                class="block w-full rounded-lg border p-2.5">
+            </div>
+
+            <div>
+              <label for="anio" class="mb-2 block text-sm">Año</label>
+              <input id="anio" type="number" formControlName="anio"
+                min="1900" max="2100" placeholder="AAAA"
+                class="block w-full rounded-lg border p-2.5">
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- SEXO -->
+        <fieldset class="mb-6">
+          <legend class="mb-3 text-sm font-medium">Sexo</legend>
+
+          <div class="flex flex-wrap gap-5">
+            <label class="flex items-center gap-2">
+              <input type="radio" value="Masculino"
+                formControlName="sexo">
+              Masculino
+            </label>
+
+            <label class="flex items-center gap-2">
+              <input type="radio" value="Femenino"
+                formControlName="sexo">
+              Femenino
+            </label>
+          </div>
+        </fieldset>
+
+        <div *ngIf="mensajeError"
+          class="mb-5 rounded-lg bg-red-100 p-4 text-sm text-red-800"
+          role="alert">
+          {{ mensajeError }}
+        </div>
+
+        <button type="submit"
+          class="w-full rounded-lg bg-blue-700 px-5 py-3 font-medium text-white hover:bg-blue-800">
+          Calcular mi zodiaco chino y registrar
+        </button>
+
+      </form>
+    </section>
+
+    <!-- RESULTADO -->
+    <section *ngIf="signo"
+      class="mb-8 rounded-2xl border bg-white p-6 text-center shadow-sm">
+
+      <h2 class="mb-4 text-2xl font-bold">
+        Resultado de {{ formulario.value.nombre }}
+      </h2>
+
+      <p class="mb-4">
+        Edad: <strong>{{ edad }}</strong> años
+      </p>
+
+      <img *ngIf="imagenSigno"
+        [src]="imagenSigno"
+        [alt]="'Animal del zodiaco chino: ' + signo"
+        class="mx-auto mb-4 h-40 w-40 object-contain">
+
+      <p class="text-gray-600">
+        Tu animal del zodiaco chino es:
+      </p>
+
+      <h3 class="mt-2 text-3xl font-bold text-amber-600">
+        {{ signo }}
+      </h3>
+    </section>
+
+    <!-- TABLA DE REGISTROS -->
+    <section class="rounded-2xl border bg-white p-6 shadow-sm">
+
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+
+        <h2 class="text-2xl font-bold text-gray-900">
+          Registros del zodiaco chino
+        </h2>
+
+        <button type="button"
+          *ngIf="registros.length > 0"
+          (click)="limpiarRegistros()"
+          class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700">
+          Limpiar tabla
+        </button>
+
+      </div>
+
+      <div class="relative overflow-x-auto">
+
+        <table class="w-full text-left text-sm text-gray-600">
+
+          <thead class="bg-gray-100 text-xs uppercase text-gray-700">
+            <tr>
+              <th class="px-4 py-3">Nombre completo</th>
+              <th class="px-4 py-3">Nacimiento</th>
+              <th class="px-4 py-3">Sexo</th>
+              <th class="px-4 py-3">Edad</th>
+              <th class="px-4 py-3">Animal</th>
+              <th class="px-4 py-3">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let registro of registros; let i = index"
+              class="border-b hover:bg-gray-50">
+
+              <td class="px-4 py-4 font-medium text-gray-900">
+                {{ registro.nombre }}
+                {{ registro.apP }}
+                {{ registro.apM }}
+              </td>
+
+              <td class="whitespace-nowrap px-4 py-4">
+                {{ registro.dia }}/{{ registro.mes }}/{{ registro.anio }}
+              </td>
+
+              <td class="px-4 py-4">
+                {{ registro.sexo }}
+              </td>
+
+              <td class="px-4 py-4">
+                {{ registro.edad }}
+              </td>
+
+              <td class="px-4 py-4 font-semibold text-amber-700">
+                {{ registro.signo }}
+              </td>
+
+              <td class="px-4 py-4">
+                <button type="button"
+                  (click)="eliminarRegistro(i)"
+                  class="rounded-lg bg-red-600 px-3 py-2 text-white hover:bg-red-700">
+                  Eliminar
+                </button>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+
+        <!-- TABLA VACÍA -->
+        <div *ngIf="registros.length === 0"
+          class="mt-4 rounded-lg bg-gray-100 p-5 text-center text-gray-600">
+          Todavía no hay registros. Completa el formulario para agregar el primero.
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</div>
